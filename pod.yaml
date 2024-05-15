@@ -1,0 +1,13 @@
+apiVersion: v1 # Specifies the API version being used
+kind: Pod # Defines the resource type as a Pod, case sensitive
+metadata: # Contains metadata about the Pod
+  name: nginx
+  labels:
+    app: nginx # Specifies the label of the Pod, 
+    tier: frontend # Specifies the tier of the Pod
+spec: # Defines the specification of the Pod
+  containers: # Specifies the list of containers within the Pod
+  - name: nginx # Specifies the name of the container
+    image: nginx:latest # Specifies the Docker image to use for the container
+    ports: # Specifies the ports to expose
+    - containerPort: 80 # Specifies the port number to expose

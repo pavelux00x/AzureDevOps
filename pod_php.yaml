@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: php-apache
+  labels:
+    app: php-apache
+    tier: backend
+spec:
+  containers:
+  - name: php-apache
+    image: php:7.2-apache
+    ports:
+    - containerPort: 80
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: password
