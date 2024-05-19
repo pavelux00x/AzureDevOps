@@ -1,56 +1,30 @@
-FROM php:7.4-fpm
+#kali linux image
+FROM --platform=arm64 kalilinux/kali-rolling
 
-# Install the necessary packages
+# Update and upgrade
+RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-# Get Composer
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
+# Install tools
+RUN apt-get install -y \
+    nmap \
+    metasploit-framework \
+    sqlmap \
+    hydra \
+    john \
+    hashcat \
+    aircrack-ng \
+    nikto \
+    dirb \
+    gobuster \
+    burpsuite \
+    sqlmap \
+    python3 \
+    python3-pip \
+    && pip3 install beautifulsoup4 requests
+    
 # Set the working directory
+WORKDIR /root
 
-WORKDIR /var/www
-
-# Copy the project files
-
-COPY . .
-
-# Install the project dependencies
-
-#create the composer.json file
-
-
-# Install the project dependencies
-
-# Expose the port
-
-RUN php --version 
-
-
-EXPOSE 9000
-
-# Start the PHP-FPM server
-
-
-
-# Path: docker-compose.yml
-
-
-
-
+# Start the shell
+CMD ["/bin/bash"]
 
